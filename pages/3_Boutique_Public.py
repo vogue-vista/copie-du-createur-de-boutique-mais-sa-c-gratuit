@@ -7,14 +7,14 @@ import os
 # -------------------------
 st.markdown("""
 <style>
-[data-testid="stSidebar"] {display: none;}
-[data-testid="stSidebarNav"] {display: none;}
-[data-testid="stSidebarUserContent"] {display: none;}
+[data-testid="stSidebar"] {display: none !important;}
+[data-testid="stSidebarNav"] {display: none !important;}
+[data-testid="stSidebarUserContent"] {display: none !important;}
 </style>
 """, unsafe_allow_html=True)
 
 # -------------------------
-# POLICE PRO (Poppins)
+# POLICE POPPINS
 # -------------------------
 st.markdown("""
 <style>
@@ -29,7 +29,6 @@ html, body, div, p, h1, h2, h3, h4, h5, h6 {
 # PAGE PUBLIQUE
 # -------------------------
 
-# Récupérer l'ID depuis l'URL
 params = st.query_params
 if "id" not in params:
     st.error("Aucune boutique sélectionnée.")
@@ -37,7 +36,6 @@ if "id" not in params:
 
 boutique_id = int(params["id"])
 
-# Charger les boutiques
 if os.path.exists("boutiques.json"):
     with open("boutiques.json", "r") as f:
         data = json.load(f)
@@ -45,7 +43,6 @@ else:
     st.error("Aucune boutique trouvée.")
     st.stop()
 
-# Trouver la boutique
 boutique = None
 for b in data:
     if b["id"] == boutique_id:
@@ -55,10 +52,6 @@ for b in data:
 if boutique is None:
     st.error("Boutique introuvable.")
     st.stop()
-
-# -------------------------
-# AFFICHAGE DE LA BOUTIQUE
-# -------------------------
 
 st.title(f"🛍️ {boutique['nom']}")
 
@@ -75,6 +68,6 @@ if boutique.get("prix"):
     st.write("### Prix")
     st.write(f"💵 {boutique['prix']}")
 
-# Bouton d'achat (factice pour l'instant)
 st.write("### Acheter")
 st.button("🛒 Acheter maintenant (bientôt disponible)")
+
