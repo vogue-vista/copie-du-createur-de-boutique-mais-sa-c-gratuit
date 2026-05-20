@@ -7,14 +7,14 @@ import json
 # -------------------------
 st.markdown("""
 <style>
-[data-testid="stSidebar"] {display: none;}
-[data-testid="stSidebarNav"] {display: none;}
-[data-testid="stSidebarUserContent"] {display: none;}
+[data-testid="stSidebar"] {display: none !important;}
+[data-testid="stSidebarNav"] {display: none !important;}
+[data-testid="stSidebarUserContent"] {display: none !important;}
 </style>
 """, unsafe_allow_html=True)
 
 # -------------------------
-# POLICE PRO (Poppins)
+# POLICE POPPINS
 # -------------------------
 st.markdown("""
 <style>
@@ -30,51 +30,37 @@ html, body, div, p, h1, h2, h3, h4, h5, h6 {
 # -------------------------
 
 st.title("🛍️ Générateur de Boutique IA — Version Test")
-st.subheader("Remplissez les informations ci-dessous pour générer votre boutique.")
 
-st.write("")
-
-# Champs utilisateur
 nom = st.text_input("Nom du produit")
 description = st.text_area("Description du produit")
 style = st.selectbox("Style de la boutique", ["Moderne", "Luxe", "Minimaliste", "Coloré"])
-
 prix = st.text_input("Prix (optionnel)")
 image_url = st.text_input("Image du produit (optionnel)")
 
-st.write("")
-
-# Bouton de génération
 if st.button("✨ Générer la boutique"):
     if not nom or not description:
         st.error("Veuillez remplir au moins le nom et la description.")
     else:
-        # Création de la boutique
-     boutique = {
-    "id": len(data) + 1,
-    "nom": nom,
-    "description": description,
-    "style": style,
-    "prix": prix,
-    "image": image_url,
-    "publie": False,
-    "revenus": 0
-}
-
-
-        # Charger anciennes boutiques
         if os.path.exists("boutiques.json"):
             with open("boutiques.json", "r") as f:
                 data = json.load(f)
         else:
             data = []
 
-        # Ajouter la nouvelle boutique
+        boutique = {
+            "id": len(data) + 1,
+            "nom": nom,
+            "description": description,
+            "style": style,
+            "prix": prix,
+            "image": image_url,
+            "publie": False,
+            "revenus": 0
+        }
+
         data.append(boutique)
 
-        # Sauvegarder
         with open("boutiques.json", "w") as f:
             json.dump(data, f)
 
         st.success("🎉 Boutique générée avec succès !")
-        st.write("Votre boutique a été ajoutée à votre liste.")
