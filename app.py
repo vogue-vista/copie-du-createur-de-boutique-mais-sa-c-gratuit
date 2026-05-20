@@ -7,14 +7,14 @@ import json
 # -------------------------
 st.markdown("""
 <style>
-[data-testid="stSidebar"] {display: none;}
-[data-testid="stSidebarNav"] {display: none;}
-[data-testid="stSidebarUserContent"] {display: none;}
+[data-testid="stSidebar"] {display: none !important;}
+[data-testid="stSidebarNav"] {display: none !important;}
+[data-testid="stSidebarUserContent"] {display: none !important;}
 </style>
 """, unsafe_allow_html=True)
 
 # -------------------------
-# POLICE PRO (Poppins)
+# POLICE POPPINS
 # -------------------------
 st.markdown("""
 <style>
@@ -32,30 +32,8 @@ html, body, div, p, h1, h2, h3, h4, h5, h6 {
 st.title("🚀 IA Business Suite — Version Test")
 st.subheader("Testez le générateur de boutique gratuitement.")
 
-st.write("")
-
-# Bouton IA (toujours débloqué)
 st.page_link("pages/1_Boutique_Pubs.py", label="✨ Lancer le Générateur IA", icon="🚀")
 st.page_link("pages/2_Mes_Boutiques.py", label="📦 Voir mes boutiques", icon="📁")
 
-
 st.write("---")
-
-st.header("💳 Abonnement PRO (désactivé pour les tests)")
-st.write("### **50 $ / mois**")
-
-st.write("""
-Dans la version finale, l'abonnement débloquera :
-
-- Générateur de boutique complet  
-- Générateur de publicités IA  
-- Analyse IA avancée  
-- Export facile  
-- Support prioritaire  
-""")
-
-st.info("🎉 Vous utilisez actuellement la version gratuite pour tester le générateur.")
-
-st.write("---")
-
 st.caption("© 2026 – IA Business Suite • Version Test")
