@@ -50,13 +50,16 @@ if st.button("✨ Générer la boutique"):
         st.error("Veuillez remplir au moins le nom et la description.")
     else:
         # Création de la boutique
-        boutique = {
-            "nom": nom,
-            "description": description,
-            "style": style,
-            "prix": prix,
-            "image": image_url
-        }
+      boutique = {
+    "nom": nom,
+    "description": description,
+    "style": style,
+    "prix": prix,
+    "image": image_url,
+    "publie": False,
+    "revenus": 0
+}
+
 
         # Charger anciennes boutiques
         if os.path.exists("boutiques.json"):
