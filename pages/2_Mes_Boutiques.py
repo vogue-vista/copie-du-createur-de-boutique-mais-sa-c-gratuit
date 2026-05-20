@@ -7,14 +7,14 @@ import os
 # -------------------------
 st.markdown("""
 <style>
-[data-testid="stSidebar"] {display: none;}
-[data-testid="stSidebarNav"] {display: none;}
-[data-testid="stSidebarUserContent"] {display: none;}
+[data-testid="stSidebar"] {display: none !important;}
+[data-testid="stSidebarNav"] {display: none !important;}
+[data-testid="stSidebarUserContent"] {display: none !important;}
 </style>
 """, unsafe_allow_html=True)
 
 # -------------------------
-# POLICE PRO (Poppins)
+# POLICE POPPINS
 # -------------------------
 st.markdown("""
 <style>
@@ -81,6 +81,3 @@ else:
                 json.dump(data, f)
             st.success("Revenus mis à jour !")
             st.rerun()
-            if st.button(f"🔗 Voir la boutique", key=f"view{i}"):
-    st.switch_page("pages/3_Boutique_Public.py?id=" + str(b["id"]))
-
