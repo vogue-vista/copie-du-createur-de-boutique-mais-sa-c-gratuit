@@ -51,20 +51,20 @@ else:
         st.write(f"**Description :** {b['description']}")
         st.write(f"**Style :** {b['style']}")
 
-        if b["prix"]:
+        if b.get("prix"):
             st.write(f"**Prix :** {b['prix']}")
 
-        if b["image"]:
+        if b.get("image"):
             st.image(b["image"], caption=b["nom"], use_column_width=True)
 
         # État de publication
-        if b["publie"]:
+        if b.get("publie", False):
             st.success("Boutique publiée ✔")
         else:
             st.warning("Boutique non publiée")
 
         # Revenus
-        st.write(f"💰 **Revenus générés :** {b['revenus']} $")
+        st.write(f"💰 **Revenus générés :** {b.get('revenus', 0)} $")
 
         # Bouton publier
         if st.button(f"📤 Publier la boutique", key=f"pub{i}"):
@@ -76,9 +76,8 @@ else:
 
         # Bouton simuler revenus
         if st.button(f"💵 Simuler 1 vente (+10$)", key=f"rev{i}"):
-            data[i]["revenus"] += 10
+            data[i]["revenus"] = data[i].get("revenus", 0) + 10
             with open("boutiques.json", "w") as f:
                 json.dump(data, f)
             st.success("Revenus mis à jour !")
             st.rerun()
-
