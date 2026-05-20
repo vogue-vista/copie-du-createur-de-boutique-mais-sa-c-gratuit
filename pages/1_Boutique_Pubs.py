@@ -50,7 +50,8 @@ if st.button("✨ Générer la boutique"):
         st.error("Veuillez remplir au moins le nom et la description.")
     else:
         # Création de la boutique
-      boutique = {
+     boutique = {
+    "id": len(data) + 1,
     "nom": nom,
     "description": description,
     "style": style,
