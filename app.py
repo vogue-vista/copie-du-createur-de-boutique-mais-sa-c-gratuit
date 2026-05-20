@@ -36,6 +36,8 @@ st.write("")
 
 # Bouton IA (toujours débloqué)
 st.page_link("pages/1_Boutique_Pubs.py", label="✨ Lancer le Générateur IA", icon="🚀")
+st.page_link("pages/2_Mes_Boutiques.py", label="📦 Voir mes boutiques", icon="📁")
+
 
 st.write("---")
 
