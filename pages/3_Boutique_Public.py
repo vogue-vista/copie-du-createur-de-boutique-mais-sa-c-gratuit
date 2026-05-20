@@ -1,6 +1,7 @@
 import streamlit as st
 import json
 import os
+st.page_link("app.py", label="🏠 Retour à l'accueil", icon="🏠")
 
 # -------------------------
 # SUPPRIMER LA SIDEBAR
