@@ -30,7 +30,7 @@ html, body, div, p, h1, h2, h3, h4, h5, h6 {
 # -------------------------
 
 st.title("📦 Mes Boutiques")
-st.subheader("Voici toutes les boutiques que vous avez générées.")
+st.subheader("Gérez vos boutiques générées.")
 
 st.write("")
 
@@ -50,11 +50,35 @@ else:
         st.write(f"### 🛍️ {b['nom']}")
         st.write(f"**Description :** {b['description']}")
         st.write(f"**Style :** {b['style']}")
-        
+
         if b["prix"]:
             st.write(f"**Prix :** {b['prix']}")
-        
+
         if b["image"]:
             st.image(b["image"], caption=b["nom"], use_column_width=True)
 
-        st.write("")
+        # État de publication
+        if b["publie"]:
+            st.success("Boutique publiée ✔")
+        else:
+            st.warning("Boutique non publiée")
+
+        # Revenus
+        st.write(f"💰 **Revenus générés :** {b['revenus']} $")
+
+        # Bouton publier
+        if st.button(f"📤 Publier la boutique", key=f"pub{i}"):
+            data[i]["publie"] = True
+            with open("boutiques.json", "w") as f:
+                json.dump(data, f)
+            st.success("Boutique publiée !")
+            st.rerun()
+
+        # Bouton simuler revenus
+        if st.button(f"💵 Simuler 1 vente (+10$)", key=f"rev{i}"):
+            data[i]["revenus"] += 10
+            with open("boutiques.json", "w") as f:
+                json.dump(data, f)
+            st.success("Revenus mis à jour !")
+            st.rerun()
+
