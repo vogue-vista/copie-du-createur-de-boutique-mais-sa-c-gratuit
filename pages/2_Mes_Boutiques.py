@@ -1,0 +1,60 @@
+import streamlit as st
+import json
+import os
+
+# -------------------------
+# SUPPRIMER LA SIDEBAR
+# -------------------------
+st.markdown("""
+<style>
+[data-testid="stSidebar"] {display: none;}
+[data-testid="stSidebarNav"] {display: none;}
+[data-testid="stSidebarUserContent"] {display: none;}
+</style>
+""", unsafe_allow_html=True)
+
+# -------------------------
+# POLICE PRO (Poppins)
+# -------------------------
+st.markdown("""
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+html, body, div, p, h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', sans-serif !important;
+}
+</style>
+""", unsafe_allow_html=True)
+
+# -------------------------
+# PAGE
+# -------------------------
+
+st.title("📦 Mes Boutiques")
+st.subheader("Voici toutes les boutiques que vous avez générées.")
+
+st.write("")
+
+# Charger les boutiques
+if os.path.exists("boutiques.json"):
+    with open("boutiques.json", "r") as f:
+        data = json.load(f)
+else:
+    data = []
+
+# Si aucune boutique
+if len(data) == 0:
+    st.info("Vous n'avez encore généré aucune boutique.")
+else:
+    for i, b in enumerate(data):
+        st.write("---")
+        st.write(f"### 🛍️ {b['nom']}")
+        st.write(f"**Description :** {b['description']}")
+        st.write(f"**Style :** {b['style']}")
+        
+        if b["prix"]:
+            st.write(f"**Prix :** {b['prix']}")
+        
+        if b["image"]:
+            st.image(b["image"], caption=b["nom"], use_column_width=True)
+
+        st.write("")
