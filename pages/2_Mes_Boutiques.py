@@ -81,3 +81,6 @@ else:
                 json.dump(data, f)
             st.success("Revenus mis à jour !")
             st.rerun()
+            if st.button(f"🔗 Voir la boutique", key=f"view{i}"):
+    st.switch_page("pages/3_Boutique_Public.py?id=" + str(b["id"]))
+
