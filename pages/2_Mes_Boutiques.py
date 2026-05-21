@@ -4,43 +4,33 @@ import os
 
 st.page_link("app.py", label="🏠 Retour à l'accueil", icon="🏠")
 
-# -------------------------
-# SUPPRIMER LA SIDEBAR
-# -------------------------
-st.markdown("""
-<style>
-[data-testid="stSidebar"] {display: none !important;}
-[data-testid="stSidebarNav"] {display: none !important;}
-[data-testid="stSidebarUserContent"] {display: none !important;}
-</style>
-""", unsafe_allow_html=True)
-
-# -------------------------
-# POLICE POPPINS
-# -------------------------
-st.markdown("""
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
-html, body, div, p, h1, h2, h3, h4, h5, h6 {
-    font-family: 'Poppins', sans-serif !important;
-}
-</style>
-""", unsafe_allow_html=True)
-
-# -------------------------
-# PAGE
-# -------------------------
+st.markdown("<style>[data-testid='stSidebar'], [data-testid='stSidebarNav'] {display: none !important;}</style>", unsafe_allow_html=True)
 
 st.title("📦 Mes Boutiques")
 st.subheader("Gérez vos boutiques générées.")
 
-# Charger les boutiques
-if os.path.exists("boutiques.json"):
-    with open("boutiques.json", "r") as f:
-        data = json.load(f)
-else:
-    data = []
+# Synchroniser la mémoire avec le fichier JSON au chargement
+if "boutiques_memoire" not in st.session_state:
+    st.session_state.boutiques_memoire = []
+    if os.path.exists("boutiques.json") and os.path.getsize("boutiques.json") > 0:
+        try:
+            with open("boutiques.json", "r", encoding="utf-8") as f:
+                st.session_state.boutiques_memoire = json.load(f)
+        except:
+            pass
 
-# Si aucune boutique
+data = st.session_state.boutiques_memoire
+
 if len(data) == 0:
-    st.info("Vous n'avez encore généré aucune boutique")
+    st.info("Vous n'avez encore généré aucune boutique. Allez dans le Générateur IA !")
+else:
+    for boutique in data:
+        with st.container(border=True):
+            col1, col2 = st.columns([3, 1])
+            with col1:
+                st.write(f"### {boutique['nom']}")
+                st.caption(f"Style: {boutique['style']} | Prix: {boutique.get('prix', 'N/A')}💵")
+            with col2:
+                # Lien vers le module 3 avec l'ID en paramètre URL
+                st.page_link(f"pages/3_Boutique_Unique.py", label="👁️ Voir", url_params={"id": boutique["id"]})
+
