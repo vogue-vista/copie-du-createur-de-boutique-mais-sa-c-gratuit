@@ -31,13 +31,10 @@ html, body, div, p, h1, h2, h3, h4, h5, h6 {
 
 params = st.query_params
 
-# ⭐ Si aucun ID → message neutre (pas d'erreur, pas de page noire)
 if "id" not in params:
-    st.write("👋 Bienvenue sur la page publique d'une boutique.")
-    st.write("Sélectionnez une boutique depuis *Mes Boutiques* pour l'afficher ici.")
+    st.write("👋 Sélectionnez une boutique depuis *Mes Boutiques*.")
     st.stop()
 
-# Lire l'ID
 try:
     boutique_id = int(params["id"])
 except:
@@ -55,7 +52,6 @@ else:
     st.error("Aucune boutique trouvée.")
     st.stop()
 
-# Trouver la boutique
 boutique = next((b for b in data if b["id"] == boutique_id), None)
 
 if boutique is None:
