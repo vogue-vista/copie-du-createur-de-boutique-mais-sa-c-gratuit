@@ -33,7 +33,7 @@ if "boutique_id_selectionnee" not in st.session_state:
     st.stop()
 
 boutique_id = st.session_state["boutique_id_selectionnee"]
-
+st.switch_page("3_Boutique_Public.py")
 # -------------------------
 # CHARGER LES BOUTIQUES
 # -------------------------
