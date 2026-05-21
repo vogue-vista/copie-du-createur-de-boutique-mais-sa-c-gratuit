@@ -42,21 +42,17 @@ except:
     st.stop()
 
 # -------------------------
-# CHARGER LES BOUTIQUES
+# CHARGER LES BOUTIQUES (Dans le Module 3)
 # -------------------------
-
-if os.path.exists("boutiques.json"):
-    with open("boutiques.json", "r") as f:
+if "boutiques_memoire" in st.session_state:
+    data = st.session_state.boutiques_memoire
+elif os.path.exists("boutiques.json"):
+    with open("boutiques.json", "r", encoding="utf-8") as f:
         data = json.load(f)
 else:
     st.error("Aucune boutique trouvée.")
     st.stop()
 
-boutique = next((b for b in data if b["id"] == boutique_id), None)
-
-if boutique is None:
-    st.error("Boutique introuvable.")
-    st.stop()
 
 # -------------------------
 # AFFICHAGE
