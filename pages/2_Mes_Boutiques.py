@@ -83,6 +83,8 @@ else:
             st.success("Revenus mis à jour !")
             st.rerun()
 if st.button(f"🌐 Ouvrir la page publique", key=f"url{i}"):
-    st.experimental_set_query_params(id=b["id"])
-    st.experimental_rerun()
+    st.markdown(
+        f"<meta http-equiv='refresh' content='0; url=/pages/3_Boutique_Public?id={b['id']}'>",
+        unsafe_allow_html=True
+    )
 
