@@ -34,4 +34,4 @@ else:
                 # Utilisation d'un bouton classique combiné à st.session_state
                 if st.button("👁️ Voir", key=f"btn_{boutique['id']}"):
                     st.session_state["boutique_id_selectionnee"] = boutique["id"]
-                    st.switch_page("2_Mes_Boutiques.py")
+                    st.switch_page("3_Boutique_Public.py")
