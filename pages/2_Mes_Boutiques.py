@@ -1,7 +1,10 @@
 import streamlit as st
 import json
 import os
+
+# URL de base
 base_url = st.request.url.split("/pages")[0]
+
 st.page_link("app.py", label="🏠 Retour à l'accueil", icon="🏠")
 
 # -------------------------
@@ -33,8 +36,6 @@ html, body, div, p, h1, h2, h3, h4, h5, h6 {
 
 st.title("📦 Mes Boutiques")
 st.subheader("Gérez vos boutiques générées.")
-
-st.write("")
 
 # Charger les boutiques
 if os.path.exists("boutiques.json"):
@@ -73,7 +74,6 @@ else:
             data[i]["publie"] = True
             with open("boutiques.json", "w") as f:
                 json.dump(data, f)
-            st.success("Boutique publiée !")
             st.rerun()
 
         # Bouton simuler revenus
@@ -81,9 +81,10 @@ else:
             data[i]["revenus"] = data[i].get("revenus", 0) + 10
             with open("boutiques.json", "w") as f:
                 json.dump(data, f)
-            st.success("Revenus mis à jour !")
             st.rerun()
-if st.button(f"🌐 Ouvrir la page publique", key=f"url{i}"):
-    url = f"{base_url}/pages/3_Boutique_Public?id={b['id']}"
-    st.markdown(f"<script>window.location.href = '{url}';</script>", unsafe_allow_html=True)
+
+        # ⭐ Bouton voir la page publique (CORRECT)
+        if st.button(f"🌐 Ouvrir la page publique", key=f"url{i}"):
+            url = f"{base_url}/pages/3_Boutique_Public?id={b['id']}"
+            st.markdown(f"<script>window.location.href = '{url}';</script>", unsafe_allow_html=True)
 
