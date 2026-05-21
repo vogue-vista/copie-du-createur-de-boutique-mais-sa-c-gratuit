@@ -43,46 +43,4 @@ else:
 
 # Si aucune boutique
 if len(data) == 0:
-    st.info("Vous n'avez encore généré aucune boutique.")
-else:
-    for i, b in enumerate(data):
-        st.write("---")
-        st.write(f"### 🛍️ {b['nom']}")
-        st.write(f"**Description :** {b['description']}")
-        st.write(f"**Style :** {b['style']}")
-
-        if b.get("prix"):
-            st.write(f"**Prix :** {b['prix']}")
-
-        if b.get("image"):
-            st.image(b["image"], caption=b["nom"], use_column_width=True)
-
-        # État de publication
-        if b.get("publie", False):
-            st.success("Boutique publiée ✔")
-        else:
-            st.warning("Boutique non publiée")
-
-        # Revenus
-        st.write(f"💰 **Revenus générés :** {b.get('revenus', 0)} $")
-
-        # Bouton publier
-        if st.button(f"📤 Publier la boutique", key=f"pub{i}"):
-            data[i]["publie"] = True
-            with open("boutiques.json", "w") as f:
-                json.dump(data, f)
-            st.rerun()
-
-        # Bouton simuler revenus
-        if st.button(f"💵 Simuler 1 vente (+10$)", key=f"rev{i}"):
-            data[i]["revenus"] = data[i].get("revenus", 0) + 10
-            with open("boutiques.json", "w") as f:
-                json.dump(data, f)
-            st.rerun()
-
-      if st.button(f"🌐 Ouvrir la page publique", key=f"url{i}"):
-    st.markdown(
-        f"<script>window.location.href = '/pages/3_Boutique_Public?id={b['id']}';</script>",
-        unsafe_allow_html=True
-    )
-
+    st.info("Vous n'avez encore généré aucune boutique
