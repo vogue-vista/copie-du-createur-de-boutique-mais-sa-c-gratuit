@@ -1,7 +1,6 @@
 import streamlit as st
 import json
 import os
-st.page_link("app.py", label="🏠 Retour à l'accueil", icon="🏠")
 
 # -------------------------
 # SUPPRIMER LA SIDEBAR
@@ -27,15 +26,25 @@ html, body, div, p, h1, h2, h3, h4, h5, h6 {
 """, unsafe_allow_html=True)
 
 # -------------------------
-# PAGE PUBLIQUE
+# LIRE L'ID DE L'URL
 # -------------------------
 
 params = st.query_params
+
 if "id" not in params:
     st.error("Aucune boutique sélectionnée.")
     st.stop()
 
-boutique_id = int(params["id"])
+# ⚠️ IMPORTANT : params["id"] est une STRING, pas une liste
+try:
+    boutique_id = int(params["id"])
+except:
+    st.error("ID invalide.")
+    st.stop()
+
+# -------------------------
+# CHARGER LES BOUTIQUES
+# -------------------------
 
 if os.path.exists("boutiques.json"):
     with open("boutiques.json", "r") as f:
@@ -44,15 +53,16 @@ else:
     st.error("Aucune boutique trouvée.")
     st.stop()
 
-boutique = None
-for b in data:
-    if b["id"] == boutique_id:
-        boutique = b
-        break
+# Trouver la boutique
+boutique = next((b for b in data if b["id"] == boutique_id), None)
 
 if boutique is None:
     st.error("Boutique introuvable.")
     st.stop()
+
+# -------------------------
+# AFFICHAGE
+# -------------------------
 
 st.title(f"🛍️ {boutique['nom']}")
 
@@ -71,4 +81,3 @@ if boutique.get("prix"):
 
 st.write("### Acheter")
 st.button("🛒 Acheter maintenant (bientôt disponible)")
-
