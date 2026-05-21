@@ -31,11 +31,10 @@ html, body, div, p, h1, h2, h3, h4, h5, h6 {
 
 params = st.query_params
 
+# ⭐ IMPORTANT : ne rien afficher si aucun ID
 if "id" not in params:
-    st.error("Aucune boutique sélectionnée.")
     st.stop()
 
-# ⚠️ IMPORTANT : params["id"] est une STRING, pas une liste
 try:
     boutique_id = int(params["id"])
 except:
