@@ -1,6 +1,7 @@
 import streamlit as st
 import json
 import os
+base_url = st.request.url.split("/pages")[0]
 st.page_link("app.py", label="🏠 Retour à l'accueil", icon="🏠")
 
 # -------------------------
