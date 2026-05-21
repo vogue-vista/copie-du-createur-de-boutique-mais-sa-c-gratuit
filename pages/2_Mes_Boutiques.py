@@ -81,7 +81,7 @@ else:
             st.rerun()
 
         # ⭐ Bouton voir la page publique (CORRECT + DANS LA BOUCLE)
-        if st.button(f"🌐 Ouvrir la page publique", key=f"url{i}"):
-            st.query_params.update({"id": b["id"]})
-            st.switch_page("pages/3_Boutique_Public.py")
+      if st.button(f"🌐 Ouvrir la page publique", key=f"url{i}"):
+    url = f"/pages/3_Boutique_Public?id={b['id']}"
+    st.markdown(f"<script>window.location.href = '{url}';</script>", unsafe_allow_html=True)
 
