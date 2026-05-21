@@ -2,8 +2,6 @@ import streamlit as st
 import json
 import os
 
-
-
 st.page_link("app.py", label="🏠 Retour à l'accueil", icon="🏠")
 
 # -------------------------
@@ -82,8 +80,8 @@ else:
                 json.dump(data, f)
             st.rerun()
 
-        # ⭐ Bouton voir la page publique (CORRECT)
-     if st.button(f"🌐 Ouvrir la page publique", key=f"url{i}"):
-    st.query_params.update({"id": b["id"]})
-    st.switch_page("pages/3_Boutique_Public.py")
+        # ⭐ Bouton voir la page publique (CORRECT + DANS LA BOUCLE)
+        if st.button(f"🌐 Ouvrir la page publique", key=f"url{i}"):
+            st.query_params.update({"id": b["id"]})
+            st.switch_page("pages/3_Boutique_Public.py")
 
