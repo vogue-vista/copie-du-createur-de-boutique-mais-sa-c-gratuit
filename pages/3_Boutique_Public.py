@@ -31,10 +31,13 @@ html, body, div, p, h1, h2, h3, h4, h5, h6 {
 
 params = st.query_params
 
-# ⭐ IMPORTANT : ne rien afficher si aucun ID
+# ⭐ Si aucun ID → on affiche un message neutre
 if "id" not in params:
+    st.write("👋 Bienvenue sur la page publique d'une boutique.")
+    st.write("Sélectionnez une boutique depuis *Mes Boutiques* pour l'afficher ici.")
     st.stop()
 
+# ⭐ Ici, on est sûr d'avoir un ID
 try:
     boutique_id = int(params["id"])
 except:
