@@ -29,8 +29,9 @@ else:
             col1, col2 = st.columns([3, 1])
             with col1:
                 st.write(f"### {boutique['nom']}")
-                st.caption(f"Style: {boutique['style']} | Prix: {boutique.get('prix', 'N/A')}💵")
+                st.caption(f"Style: {boutique['style']} | Prix: {boutique.get('prix', 'N/A')} 💵")
             with col2:
-                # Lien vers le module 3 avec l'ID en paramètre URL
-                st.page_link(f"pages/3_Boutique_Unique.py", label="👁️ Voir", url_params={"id": boutique["id"]})
-
+                # Utilisation d'un bouton classique combiné à st.session_state
+                if st.button("👁️ Voir", key=f"btn_{boutique['id']}"):
+                    st.session_state["boutique_id_selectionnee"] = boutique["id"]
+                    st.switch_page("pages/3_Boutique_Unique.py")
