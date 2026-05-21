@@ -84,8 +84,6 @@ else:
             st.success("Revenus mis à jour !")
             st.rerun()
 if st.button(f"🌐 Ouvrir la page publique", key=f"url{i}"):
-    st.markdown(
-        f"<meta http-equiv='refresh' content='0; url=/pages/3_Boutique_Public?id={b['id']}'>",
-        unsafe_allow_html=True
-    )
+    url = f"{base_url}/pages/3_Boutique_Public?id={b['id']}"
+    st.markdown(f"<script>window.location.href = '{url}';</script>", unsafe_allow_html=True)
 
