@@ -43,4 +43,4 @@ else:
 
 # Si aucune boutique
 if len(data) == 0:
-    st.info("Vous n'avez encore généré aucune boutique
+    st.info("Vous n'avez encore généré aucune boutique")
