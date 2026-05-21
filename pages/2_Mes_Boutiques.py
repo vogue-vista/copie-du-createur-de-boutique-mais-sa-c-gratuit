@@ -2,8 +2,7 @@ import streamlit as st
 import json
 import os
 
-# URL de base
-base_url = st.request.url.split("/pages")[0]
+
 
 st.page_link("app.py", label="🏠 Retour à l'accueil", icon="🏠")
 
@@ -84,7 +83,7 @@ else:
             st.rerun()
 
         # ⭐ Bouton voir la page publique (CORRECT)
-        if st.button(f"🌐 Ouvrir la page publique", key=f"url{i}"):
-            url = f"{base_url}/pages/3_Boutique_Public?id={b['id']}"
-            st.markdown(f"<script>window.location.href = '{url}';</script>", unsafe_allow_html=True)
+     if st.button(f"🌐 Ouvrir la page publique", key=f"url{i}"):
+    st.query_params.update({"id": b["id"]})
+    st.switch_page("pages/3_Boutique_Public.py")
 
