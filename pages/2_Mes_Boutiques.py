@@ -83,5 +83,6 @@ else:
             st.success("Revenus mis à jour !")
             st.rerun()
 if st.button(f"🌐 Ouvrir la page publique", key=f"url{i}"):
-    st.query_params.update({"id": b["id"]})
-    st.switch_page("pages/3_Boutique_Public.py")
+    st.experimental_set_query_params(id=b["id"])
+    st.experimental_rerun()
+
