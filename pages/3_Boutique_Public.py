@@ -26,23 +26,16 @@ html, body, div, p, h1, h2, h3, h4, h5, h6 {
 """, unsafe_allow_html=True)
 
 # -------------------------
-# LIRE L'ID DE L'URL
+# LIRE L'ID DEPUIS LA MÉMOIRE (Début du Module 3)
 # -------------------------
-
-params = st.query_params
-
-if "id" not in params:
+if "boutique_id_selectionnee" not in st.session_state:
     st.write("👋 Sélectionnez une boutique depuis *Mes Boutiques*.")
     st.stop()
 
-try:
-    boutique_id = int(params["id"])
-except:
-    st.error("ID invalide.")
-    st.stop()
+boutique_id = st.session_state["boutique_id_selectionnee"]
 
 # -------------------------
-# CHARGER LES BOUTIQUES (Dans le Module 3)
+# CHARGER LES BOUTIQUES
 # -------------------------
 if "boutiques_memoire" in st.session_state:
     data = st.session_state.boutiques_memoire
@@ -52,6 +45,13 @@ elif os.path.exists("boutiques.json"):
 else:
     st.error("Aucune boutique trouvée.")
     st.stop()
+
+boutique = next((b for b in data if b["id"] == boutique_id), None)
+
+if boutique is None:
+    st.error("Boutique introuvable.")
+    st.stop()
+
 
 
 # -------------------------
