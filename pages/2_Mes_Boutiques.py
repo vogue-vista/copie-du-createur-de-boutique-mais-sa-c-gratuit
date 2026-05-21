@@ -80,7 +80,9 @@ else:
                 json.dump(data, f)
             st.rerun()
 
-        # ⭐ BOUTON OUVRIR LA PAGE PUBLIQUE (VERSION STABLE)
-        if st.button(f"🌐 Ouvrir la page publique", key=f"url{i}"):
-            url = f"/pages/3_Boutique_Public?id={b['id']}"
-            st.markdown(f"<script>window.location.href = '{url}';</script>", unsafe_allow_html=True)
+      if st.button(f"🌐 Ouvrir la page publique", key=f"url{i}"):
+    st.markdown(
+        f"<script>window.location.href = '/pages/3_Boutique_Public?id={b['id']}';</script>",
+        unsafe_allow_html=True
+    )
+
