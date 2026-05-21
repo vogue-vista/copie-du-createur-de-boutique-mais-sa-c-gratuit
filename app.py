@@ -34,7 +34,7 @@ st.subheader("Testez le générateur de boutique gratuitement.")
 
 st.page_link("pages/1_Boutique_Pubs.py", label="✨ Lancer le Générateur IA", icon="🚀")
 st.page_link("pages/2_Mes_Boutiques.py", label="📦 Voir mes boutiques", icon="📁")
-st.page_link("pages/2_Mes_Boutiques.py", label="🌐 Voir les boutiques publiques", icon="🌍")
+st.page_link("pages/3_Boutique_Public.py", label="🌐 Voir les boutiques publiques", icon="🌍")
 
 st.write("---")
 st.caption("© 2026 – IA Business Suite • Version Test")
